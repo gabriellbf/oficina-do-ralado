@@ -144,8 +144,26 @@
 }
 
 .linha-preco__campo {
-  flex: 1 1 130px;
-  min-width: 120px;
+  flex: 1 1 140px;
+  min-width: 0; /* deixa o campo encolher de verdade dentro do flex */
+}
+
+/* Sem width:100% o input mantem a largura padrao do navegador e passa por
+   baixo do botao "Salvar preco" nas telas estreitas. */
+.linha-preco input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.05rem;
+  font-family: inherit;
+  border: 2px solid var(--cinza-borda);
+  border-radius: var(--raio);
+  min-height: 48px;
+  background: var(--branco);
+  color: var(--preto-texto);
+}
+
+.linha-preco .botao {
+  flex: 0 0 auto;
 }
 
 .linha-preco label {

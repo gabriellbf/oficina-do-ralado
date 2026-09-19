@@ -30,6 +30,15 @@ function escaparHtml(valor) {
     .replace(/'/g, '&#39;');
 }
 
+/**
+ * Formata um numero para aparecer dentro do campo de preco: 489.9 -> "489,90".
+ * @param {number} valor
+ * @returns {string}
+ */
+function paraCampo(valor) {
+  return Number(valor).toFixed(2).replace('.', ',');
+}
+
 /** Formata um numero como moeda brasileira. */
 function formatarPreco(valor) {
   return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(valor) || 0);
@@ -142,7 +151,7 @@ function montarItemProduto(produto) {
     '<input type="text" inputmode="decimal" id="preco-produto-' +
     produto.id +
     '" value="' +
-    escaparHtml(String(produto.preco).replace('.', ',')) +
+    escaparHtml(paraCampo(produto.preco)) +
     '" data-campo-preco />' +
     '</div>' +
     '<button class="botao" type="button" data-acao="salvar-preco">Salvar preço</button>' +
@@ -194,7 +203,7 @@ function montarItemServico(servico) {
     '<input type="text" inputmode="decimal" id="preco-servico-' +
     servico.id +
     '" value="' +
-    (semValor ? '' : escaparHtml(String(servico.valor).replace('.', ','))) +
+    (semValor ? '' : escaparHtml(paraCampo(servico.valor))) +
     '" placeholder="vazio = sob consulta" data-campo-preco />' +
     '</div>' +
     '<button class="botao" type="button" data-acao="salvar-preco">Salvar valor</button>' +
@@ -391,7 +400,7 @@ function abrirFormularioProduto(produto) {
   document.getElementById('titulo-form-produto').textContent = produto ? 'Editar produto' : 'Novo produto';
   document.getElementById('produto-nome').value = produto ? produto.nome : '';
   document.getElementById('produto-categoria').value = produto ? produto.categoria : 'bateria';
-  document.getElementById('produto-preco').value = produto ? String(produto.preco).replace('.', ',') : '';
+  document.getElementById('produto-preco').value = produto ? paraCampo(produto.preco) : '';
   document.getElementById('produto-descricao').value = produto && produto.descricao ? produto.descricao : '';
 
   formProduto.classList.remove('escondido');
@@ -408,7 +417,7 @@ function abrirFormularioServico(servico) {
   document.getElementById('titulo-form-servico').textContent = servico ? 'Editar serviço' : 'Novo serviço';
   document.getElementById('servico-tipo').value = servico ? servico.tipo : '';
   document.getElementById('servico-valor').value =
-    servico && servico.valor !== null && servico.valor !== undefined ? String(servico.valor).replace('.', ',') : '';
+    servico && servico.valor !== null && servico.valor !== undefined ? paraCampo(servico.valor) : '';
   document.getElementById('servico-descricao').value = servico && servico.descricao ? servico.descricao : '';
 
   formServico.classList.remove('escondido');
