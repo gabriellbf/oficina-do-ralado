@@ -86,8 +86,11 @@
           </div>
 
           <!-- ---------- Lista de produtos (preenchida por catalogo.js) ---------- -->
-          <div id="lista-produtos" class="grade grade--tres" aria-live="polite">
-            <p class="aviso">Carregando produtos...</p>
+          <div id="lista-produtos" class="grade grade--tres grade--reservada" aria-live="polite" aria-busy="true">
+            <p class="apenas-leitor-tela">Carregando produtos...</p>
+            <article class="cartao cartao--esqueleto" aria-hidden="true"><span></span><span></span><span></span></article>
+            <article class="cartao cartao--esqueleto" aria-hidden="true"><span></span><span></span><span></span></article>
+            <article class="cartao cartao--esqueleto" aria-hidden="true"><span></span><span></span><span></span></article>
           </div>
         </div>
       </section>

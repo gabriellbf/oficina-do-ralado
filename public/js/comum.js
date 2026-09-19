@@ -58,18 +58,22 @@ async function buscarJson(url) {
    Dados da empresa (endereco, horario, WhatsApp...)
    -------------------------------------------------------------------------- */
 
-/** Guarda os dados ja baixados para nao pedir de novo a cada uso. */
-let dadosEmpresa = null;
+/**
+ * Guarda a PROMESSA da requisicao (e nao so o resultado).
+ * Assim, se duas partes da pagina pedirem os dados ao mesmo tempo, a API e
+ * consultada uma unica vez.
+ */
+let promessaEmpresa = null;
 
 /**
  * Baixa (uma unica vez) os dados da empresa em GET /api/empresa.
  * @returns {Promise<object>}
  */
-async function obterEmpresa() {
-  if (!dadosEmpresa) {
-    dadosEmpresa = await buscarJson('/api/empresa');
+function obterEmpresa() {
+  if (!promessaEmpresa) {
+    promessaEmpresa = buscarJson('/api/empresa');
   }
-  return dadosEmpresa;
+  return promessaEmpresa;
 }
 
 /**

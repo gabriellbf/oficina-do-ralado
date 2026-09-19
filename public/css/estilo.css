@@ -685,3 +685,51 @@ summary:focus-visible {
   margin: 0;
   padding: 0;
 }
+
+/* --------------------------------------------------------------------------
+   14. Reserva de espaco para as listas carregadas por JavaScript
+   --------------------------------------------------------------------------
+   As listas de produtos e servicos chegam da API depois que a pagina ja
+   apareceu. Sem reservar espaco, o conteudo de baixo "pula" quando os cartoes
+   entram — o que o Lighthouse mede como CLS (Cumulative Layout Shift) e
+   incomoda o visitante. A altura minima abaixo mantem a pagina parada.
+   -------------------------------------------------------------------------- */
+.grade--reservada {
+  min-height: 60vh;
+  align-content: start;
+}
+
+/* No computador cabem 3 cartoes por linha, entao a reserva pode ser menor —
+   assim nao sobra um vazio grande quando o filtro devolve poucos itens. */
+@media (min-width: 900px) {
+  .grade--reservada {
+    min-height: 340px;
+  }
+}
+
+/* Cartao "fantasma" mostrado enquanto os dados nao chegam. */
+.cartao--esqueleto {
+  min-height: 190px;
+  background: var(--cinza-fundo);
+  border-style: dashed;
+  box-shadow: none;
+}
+
+.cartao--esqueleto span {
+  display: block;
+  height: 14px;
+  border-radius: 6px;
+  background: var(--cinza-borda);
+  margin-bottom: 10px;
+}
+
+.cartao--esqueleto span:nth-child(1) {
+  width: 60%;
+  height: 20px;
+}
+.cartao--esqueleto span:nth-child(2) {
+  width: 90%;
+}
+.cartao--esqueleto span:nth-child(3) {
+  width: 75%;
+}

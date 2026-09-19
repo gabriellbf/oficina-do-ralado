@@ -262,6 +262,8 @@ desenvolvimento.
 | [`docs/manual-do-usuario.md`](docs/manual-do-usuario.md) | Sr. Renê — passo a passo sem termos técnicos |
 | [`docs/deploy-render.md`](docs/deploy-render.md) | Quem for publicar o site no Render |
 | [`docs/roteiro-teste-piloto.md`](docs/roteiro-teste-piloto.md) | Teste com usuários reais |
+| [`docs/requisitos.md`](docs/requisitos.md) | Rastreabilidade RF01–RF06 e RNF01–RNF05 (checklist de entrega) |
+| [`docs/lighthouse.md`](docs/lighthouse.md) | Auditoria de desempenho e acessibilidade (RNF02 e RNF04) |
 | [`docs/prints/`](docs/prints) | Evidências visuais geradas por `npm run screenshots` |
 
 ---

@@ -65,6 +65,7 @@ async function carregarServicos() {
     const [servicos, empresa] = await Promise.all([buscarJson('/api/servicos'), obterEmpresa()]);
 
     if (servicos.length === 0) {
+      container.setAttribute('aria-busy', 'false');
       container.innerHTML = '<p class="aviso">Nenhum serviço cadastrado no momento.</p>';
       return;
     }
@@ -74,7 +75,9 @@ async function carregarServicos() {
         return montarCartaoServico(servico, empresa);
       })
       .join('');
+    container.setAttribute('aria-busy', 'false');
   } catch (erro) {
+    container.setAttribute('aria-busy', 'false');
     container.innerHTML =
       '<p class="aviso aviso--erro">Não foi possível carregar os serviços agora. ' +
       'Atualize a página ou chame a gente no WhatsApp.</p>';

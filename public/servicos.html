@@ -64,8 +64,11 @@
           </p>
 
           <!-- A lista é preenchida por servicos.js com os dados de GET /api/servicos -->
-          <div id="lista-servicos" class="grade grade--tres" aria-live="polite">
-            <p class="aviso">Carregando serviços...</p>
+          <div id="lista-servicos" class="grade grade--tres grade--reservada" aria-live="polite" aria-busy="true">
+            <p class="apenas-leitor-tela">Carregando serviços...</p>
+            <article class="cartao cartao--esqueleto" aria-hidden="true"><span></span><span></span><span></span></article>
+            <article class="cartao cartao--esqueleto" aria-hidden="true"><span></span><span></span><span></span></article>
+            <article class="cartao cartao--esqueleto" aria-hidden="true"><span></span><span></span><span></span></article>
           </div>
         </div>
       </section>

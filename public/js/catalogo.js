@@ -78,6 +78,7 @@ async function carregarProdutos() {
     const [produtos, empresa] = await Promise.all([buscarJson(montarUrlDaBusca()), obterEmpresa()]);
 
     if (produtos.length === 0) {
+      container.setAttribute('aria-busy', 'false');
       container.innerHTML =
         '<p class="aviso">Nenhum produto encontrado com esse filtro. ' +
         'Tente outra categoria ou pergunte no WhatsApp.</p>';
@@ -89,7 +90,9 @@ async function carregarProdutos() {
         return montarCartaoProduto(produto, empresa);
       })
       .join('');
+    container.setAttribute('aria-busy', 'false');
   } catch (erro) {
+    container.setAttribute('aria-busy', 'false');
     container.innerHTML =
       '<p class="aviso aviso--erro">Não foi possível carregar o catálogo agora. ' +
       'Atualize a página ou chame a gente no WhatsApp.</p>';
