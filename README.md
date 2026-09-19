@@ -39,7 +39,13 @@ O layout usa as cores da fachada da loja: **azul-marinho `#1F2A6B`** e **amarelo
 
 ## 2. Como instalar e rodar
 
-Pré-requisito: [Node.js 20 ou superior](https://nodejs.org).
+Pré-requisito: **[Node.js 20, 21 ou 22](https://nodejs.org)** — de preferência a 22.12.0, que é a
+versão usada no desenvolvimento e a que está fixada em `.node-version`.
+
+> ⚠️ **Não use Node 24 ou mais novo.** O `better-sqlite3` 11.10.0 só distribui binários prontos até
+> o Node 23; em versões mais novas o `npm install` tenta compilar a biblioteca do zero e falha com
+> `gyp ERR! build error`. É por isso que o projeto traz o arquivo `.node-version` na raiz — ele
+> também é lido pelo Render na hora do deploy.
 
 ```bash
 npm install
@@ -120,7 +126,8 @@ oficina-do-ralado/
 ├── tests/                    Testes automatizados (Jest + Supertest)
 ├── scripts/screenshots.js    Gera as evidências visuais com Playwright
 ├── docs/                     Manual do usuário, deploy, roteiro de teste e prints
-└── data/                     Banco SQLite (não vai para o GitHub)
+├── data/                     Banco SQLite (não vai para o GitHub)
+└── .node-version             Trava a versão do Node (vale local e no Render)
 ```
 
 > O cabeçalho e o rodapé aparecem repetidos nos quatro arquivos HTML. Isso é proposital: o site é

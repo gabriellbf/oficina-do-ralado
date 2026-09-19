@@ -46,16 +46,36 @@ git push -u origin main
 4. Conecte sua conta do GitHub e selecione o repositório `oficina-do-ralado`.
 5. Preencha as configurações:
 
-| Campo | Valor |
-| --- | --- |
-| **Name** | `oficina-do-ralado` |
-| **Region** | `Oregon (US West)` ou a mais próxima disponível |
-| **Branch** | `main` |
-| **Root Directory** | *(deixe vazio)* |
-| **Runtime / Language** | `Node` |
-| **Build Command** | `npm install` |
-| **Start Command** | `npm start` |
-| **Instance Type** | `Free` |
+| Campo                  | Valor                                           |
+| ---------------------- | ----------------------------------------------- |
+| **Name**               | `oficina-do-ralado`                             |
+| **Region**             | `Oregon (US West)` ou a mais próxima disponível |
+| **Branch**             | `main`                                          |
+| **Root Directory**     | _(deixe vazio)_                                 |
+| **Runtime / Language** | `Node`                                          |
+| **Build Command**      | `npm install`                                   |
+| **Start Command**      | `npm start`                                     |
+| **Instance Type**      | `Free`                                          |
+
+### 3.1. A versão do Node já vem definida no projeto
+
+Você **não precisa configurar nada** aqui — mas é importante entender o motivo, porque este ponto
+já quebrou um deploy.
+
+O banco de dados usa a biblioteca `better-sqlite3`, que é escrita em C++. Para não ter que compilar
+nada na hora da instalação, ela distribui **binários já prontos**, um para cada versão do Node.
+A versão 11.10.0 tem binário pronto para Node **18, 20, 22 e 23**.
+
+Quando o Render escolhe sozinho a versão do Node, ele pega a mais nova disponível (Node 26, por
+exemplo). Como não existe binário pronto para essa versão, o `npm install` tenta **compilar do
+zero** com o `node-gyp` — e falha com `gyp ERR! build error`.
+
+Para travar isso, o projeto traz na raiz o arquivo **`.node-version`** com o conteúdo `22.12.0`,
+que é a mesma versão usada no desenvolvimento. O Render lê esse arquivo automaticamente. O
+`package.json` também declara `"engines": { "node": ">=20 <23" }` como documentação da faixa aceita.
+
+> ⚠️ Se alguém cadastrar uma variável de ambiente `NODE_VERSION` no Render, ela **tem prioridade**
+> sobre o arquivo `.node-version` e o erro volta. Não cadastre essa variável.
 
 ---
 
@@ -63,13 +83,13 @@ git push -u origin main
 
 Ainda na tela de criação, abra **Advanced** → **Add Environment Variable** e cadastre:
 
-| Key | Value | Observação |
-| --- | --- | --- |
-| `NODE_ENV` | `production` | Liga o cookie seguro (HTTPS) e o cache dos arquivos |
-| `SESSION_SECRET` | *(o código aleatório do passo 1)* | **Nunca** use o valor de exemplo |
-| `ADMIN_USER` | `rene` | Usuário que o Sr. Renê vai digitar |
-| `ADMIN_PASSWORD` | *(a senha forte escolhida)* | Mínimo 10 caracteres |
-| `DATABASE_PATH` | `./data/oficina.db` | Caminho do banco |
+| Key              | Value                             | Observação                                          |
+| ---------------- | --------------------------------- | --------------------------------------------------- |
+| `NODE_ENV`       | `production`                      | Liga o cookie seguro (HTTPS) e o cache dos arquivos |
+| `SESSION_SECRET` | _(o código aleatório do passo 1)_ | **Nunca** use o valor de exemplo                    |
+| `ADMIN_USER`     | `rene`                            | Usuário que o Sr. Renê vai digitar                  |
+| `ADMIN_PASSWORD` | _(a senha forte escolhida)_       | Mínimo 10 caracteres. **Não escreva a senha neste arquivo** |
+| `DATABASE_PATH`  | `./data/oficina.db`               | Caminho do banco                                    |
 
 **Não** cadastre a variável `PORT`: o Render define a porta sozinho, e o código já lê esse valor
 automaticamente (`process.env.PORT`).
@@ -118,11 +138,11 @@ o site nunca fica quebrado nem vazio.
 
 **Como resolver isso de verdade**, quando o projeto sair da fase acadêmica:
 
-| Opção | Custo aproximado | Observação |
-| --- | --- | --- |
-| Render **Persistent Disk** | plano pago | Mantém o arquivo `.db` entre deploys — solução mais simples |
-| Banco **PostgreSQL** gerenciado | plano gratuito limitado / pago | Exige trocar o `better-sqlite3` por um driver do Postgres |
-| Outra hospedagem com disco | varia | Mesma ideia do disco persistente |
+| Opção                           | Custo aproximado               | Observação                                                  |
+| ------------------------------- | ------------------------------ | ----------------------------------------------------------- |
+| Render **Persistent Disk**      | plano pago                     | Mantém o arquivo `.db` entre deploys — solução mais simples |
+| Banco **PostgreSQL** gerenciado | plano gratuito limitado / pago | Exige trocar o `better-sqlite3` por um driver do Postgres   |
+| Outra hospedagem com disco      | varia                          | Mesma ideia do disco persistente                            |
 
 ### 6.2. O site "dorme" quando ninguém acessa
 
@@ -150,10 +170,10 @@ O Render detecta o `push` e publica sozinho. Lembre-se do aviso do item 6.1:
 
 ## 8. Problemas comuns
 
-| Problema | Causa provável | Solução |
-| --- | --- | --- |
-| Deploy falha em `npm install` | Versão do Node antiga | Adicione a variável `NODE_VERSION` com valor `20` |
-| Login não funciona no site publicado | `NODE_ENV=production` sem HTTPS | O Render já fornece HTTPS; confira se está acessando com `https://` |
-| "Muitas tentativas de login" | Limite de 5 tentativas por IP | Espere 15 minutos |
-| Preços voltaram aos de exemplo | Houve um deploy (item 6.1) | Esperado no plano gratuito; cadastre de novo ou contrate o disco persistente |
-| O primeiro acesso do dia demora | O serviço estava dormindo (item 6.2) | Normal no plano gratuito |
+| Problema                             | Causa provável                       | Solução                                                                      |
+| ------------------------------------ | ------------------------------------ | ---------------------------------------------------------------------------- |
+| Deploy falha em `npm install` com `gyp ERR! build error` | O Render usou um Node sem binário pronto do `better-sqlite3` | Já resolvido pelo arquivo `.node-version` (item 3.1). Confira se não existe uma variável `NODE_VERSION` no Render sobrescrevendo ele |
+| Login não funciona no site publicado | `NODE_ENV=production` sem HTTPS      | O Render já fornece HTTPS; confira se está acessando com `https://`          |
+| "Muitas tentativas de login"         | Limite de 5 tentativas por IP        | Espere 15 minutos                                                            |
+| Preços voltaram aos de exemplo       | Houve um deploy (item 6.1)           | Esperado no plano gratuito; cadastre de novo ou contrate o disco persistente |
+| O primeiro acesso do dia demora      | O serviço estava dormindo (item 6.2) | Normal no plano gratuito                                                     |
