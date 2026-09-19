@@ -1,0 +1,687 @@
+/* ==========================================================================
+   Oficina do Ralado — folha de estilo principal
+   --------------------------------------------------------------------------
+   Escrita em CSS puro, sem framework, no modelo "mobile-first": as regras
+   valem primeiro para o celular e depois vamos ampliando com @media.
+   As cores vieram da fachada da loja: azul-marinho e amarelo.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Variaveis de cor e medidas (ficam num lugar so, faceis de trocar)
+   -------------------------------------------------------------------------- */
+:root {
+  --azul: #1f2a6b;
+  --azul-escuro: #16204f;
+  --azul-claro: #2f3d8c;
+  --amarelo: #f5c400;
+  --amarelo-escuro: #d9ae00;
+  --branco: #ffffff;
+  --cinza-fundo: #f4f5f9;
+  --cinza-borda: #d8dae4;
+  --cinza-texto: #4a4a52;
+  --preto-texto: #1a1a1f;
+  /* Verde escuro do WhatsApp: escolhido escuro para ter contraste AA com o texto branco. */
+  --verde-whats: #0b6b4e;
+  --verde-whats-escuro: #085038;
+  --vermelho: #b3261e;
+
+  --raio: 10px;
+  --sombra: 0 2px 8px rgba(31, 42, 107, 0.12);
+  --largura-maxima: 1100px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset leve e tipografia base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* Fontes do proprio sistema: carregam instantaneamente (bom para desempenho). */
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--preto-texto);
+  background: var(--branco);
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+  color: var(--azul);
+}
+
+h1 {
+  font-size: 1.9rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.15rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--azul);
+}
+
+/* Foco sempre visivel (acessibilidade: navegacao por teclado). */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--amarelo);
+  outline-offset: 2px;
+}
+
+/* Texto visivel apenas para leitores de tela. */
+.apenas-leitor-tela {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Link "pular para o conteudo": aparece ao navegar com Tab. */
+.pular-conteudo {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 100;
+  background: var(--amarelo);
+  color: var(--azul-escuro);
+  padding: 12px 16px;
+  font-weight: 700;
+}
+.pular-conteudo:focus {
+  left: 0;
+}
+
+.conteudo {
+  width: 100%;
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Cabecalho e menu responsivo
+   -------------------------------------------------------------------------- */
+.cabecalho {
+  background: var(--azul);
+  color: var(--branco);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: var(--sombra);
+}
+
+.cabecalho__barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--branco);
+  text-decoration: none;
+}
+
+.marca__icone {
+  flex: 0 0 auto;
+}
+
+.marca__nome {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  line-height: 1.1;
+}
+
+.marca__slogan {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--amarelo);
+  letter-spacing: 0.2px;
+}
+
+/* Botao hamburguer: so aparece no celular. */
+.botao-menu {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: var(--branco);
+  border-radius: var(--raio);
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.menu {
+  display: none;
+  background: var(--azul-escuro);
+  border-top: 3px solid var(--amarelo);
+}
+
+/* Classe adicionada pelo JavaScript quando o usuario toca no hamburguer. */
+.menu--aberto {
+  display: block;
+}
+
+.menu__lista {
+  list-style: none;
+  margin: 0;
+  padding: 8px 16px 16px;
+  max-width: var(--largura-maxima);
+  margin-inline: auto;
+}
+
+.menu__link {
+  display: block;
+  padding: 14px 4px;
+  color: var(--branco);
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.menu__link:hover {
+  color: var(--amarelo);
+}
+
+/* Pagina atual em destaque (atributo aria-current="page"). */
+.menu__link[aria-current="page"] {
+  color: var(--amarelo);
+}
+
+@media (min-width: 760px) {
+  .botao-menu {
+    display: none;
+  }
+  .menu {
+    display: block;
+    background: transparent;
+    border-top: none;
+  }
+  .menu__lista {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    padding: 0 16px 10px;
+  }
+  .menu__link {
+    border-bottom: 3px solid transparent;
+    padding: 6px 12px;
+  }
+  .menu__link[aria-current="page"] {
+    border-bottom-color: var(--amarelo);
+  }
+  .marca__nome {
+    font-size: 1.35rem;
+  }
+  .marca__slogan {
+    font-size: 0.8rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Banner de promocao
+   -------------------------------------------------------------------------- */
+.banner-promo {
+  background: var(--amarelo);
+  color: var(--azul-escuro);
+  text-align: center;
+  padding: 14px 16px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   5. Secoes e blocos de conteudo
+   -------------------------------------------------------------------------- */
+.secao {
+  padding: 28px 0;
+}
+
+.secao--cinza {
+  background: var(--cinza-fundo);
+}
+
+.secao__titulo {
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.secao__subtitulo {
+  text-align: center;
+  color: var(--cinza-texto);
+  margin-bottom: 20px;
+}
+
+.hero {
+  background: var(--azul);
+  color: var(--branco);
+  padding: 32px 0 36px;
+}
+
+.hero h1 {
+  color: var(--branco);
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 55ch;
+}
+
+.hero__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Botoes
+   -------------------------------------------------------------------------- */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: var(--raio);
+  background: var(--amarelo);
+  color: var(--azul-escuro);
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  min-height: 48px; /* alvo de toque confortavel no celular */
+}
+
+.botao:hover {
+  background: var(--amarelo-escuro);
+}
+
+.botao--whatsapp {
+  background: var(--verde-whats);
+  color: var(--branco);
+}
+.botao--whatsapp:hover {
+  background: var(--verde-whats-escuro);
+}
+
+.botao--contorno {
+  background: transparent;
+  border: 2px solid var(--amarelo);
+  color: var(--amarelo);
+}
+.botao--contorno:hover {
+  background: rgba(245, 196, 0, 0.15);
+}
+
+.botao--azul {
+  background: var(--azul);
+  color: var(--branco);
+}
+.botao--azul:hover {
+  background: var(--azul-claro);
+}
+
+.botao--bloco {
+  width: 100%;
+}
+
+.botao--grande {
+  font-size: 1.15rem;
+  padding: 18px 26px;
+}
+
+.botao--pequeno {
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  min-height: 44px;
+}
+
+.botao--perigo {
+  background: var(--vermelho);
+  color: var(--branco);
+}
+
+/* --------------------------------------------------------------------------
+   7. Grade de cartoes (destaques, catalogo, servicos)
+   -------------------------------------------------------------------------- */
+.grade {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 620px) {
+  .grade {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .grade--tres {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grade--quatro {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.cartao {
+  background: var(--branco);
+  border: 1px solid var(--cinza-borda);
+  border-radius: var(--raio);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: var(--sombra);
+}
+
+.cartao__icone {
+  color: var(--azul);
+  margin-bottom: 4px;
+}
+
+.cartao__titulo {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.cartao__texto {
+  color: var(--cinza-texto);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.cartao__preco {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--azul);
+  margin: 6px 0 2px;
+}
+
+.cartao__preco--consulta {
+  font-size: 1.1rem;
+  color: var(--cinza-texto);
+}
+
+.cartao__etiqueta {
+  align-self: flex-start;
+  background: var(--azul);
+  color: var(--branco);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.cartao__rodape {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Filtros do catalogo
+   -------------------------------------------------------------------------- */
+.filtros {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.filtros__botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filtro {
+  border: 2px solid var(--azul);
+  background: var(--branco);
+  color: var(--azul);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.filtro[aria-pressed="true"] {
+  background: var(--azul);
+  color: var(--branco);
+}
+
+.campo-busca {
+  display: flex;
+  gap: 8px;
+}
+
+.campo-busca input {
+  flex: 1;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 2px solid var(--cinza-borda);
+  border-radius: var(--raio);
+  min-height: 48px;
+}
+
+/* --------------------------------------------------------------------------
+   9. Listas de informacao (horario, pagamentos, endereco)
+   -------------------------------------------------------------------------- */
+.lista-info {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lista-info li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cinza-borda);
+}
+
+.lista-info li:last-child {
+  border-bottom: none;
+}
+
+.lista-info strong {
+  color: var(--azul);
+}
+
+.etiquetas {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.etiquetas li {
+  background: var(--azul);
+  color: var(--branco);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* --------------------------------------------------------------------------
+   10. Mapa incorporado (Google Maps)
+   -------------------------------------------------------------------------- */
+.mapa {
+  border: 0;
+  width: 100%;
+  height: 280px;
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+/* --------------------------------------------------------------------------
+   11. Mensagens de carregamento / erro / vazio
+   -------------------------------------------------------------------------- */
+.aviso {
+  padding: 16px;
+  border-radius: var(--raio);
+  background: var(--cinza-fundo);
+  border: 1px solid var(--cinza-borda);
+  color: var(--cinza-texto);
+  text-align: center;
+}
+
+.aviso--erro {
+  background: #fdecea;
+  border-color: #f3b7b2;
+  color: #8c1d16;
+}
+
+.aviso--sucesso {
+  background: #e8f5ee;
+  border-color: #a9d8bf;
+  color: #0b5c3c;
+}
+
+.escondido {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   12. Rodape
+   -------------------------------------------------------------------------- */
+.rodape {
+  background: var(--azul-escuro);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 28px 0 90px; /* espaco extra embaixo por causa do botao flutuante */
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+.rodape h2 {
+  color: var(--amarelo);
+  font-size: 1.05rem;
+}
+
+.rodape a {
+  color: var(--amarelo);
+}
+
+.rodape__colunas {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 760px) {
+  .rodape__colunas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .rodape {
+    padding-bottom: 28px;
+  }
+}
+
+.rodape__creditos {
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* --------------------------------------------------------------------------
+   13. Botao flutuante do WhatsApp (presente em todas as paginas)
+   -------------------------------------------------------------------------- */
+.whats-flutuante {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--verde-whats);
+  color: var(--branco);
+  text-decoration: none;
+  font-weight: 800;
+  padding: 14px 18px;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  min-height: 56px;
+}
+
+.whats-flutuante:hover {
+  background: var(--verde-whats-escuro);
+}
+
+@media (min-width: 760px) {
+  .whats-flutuante {
+    right: 24px;
+    bottom: 24px;
+  }
+}
+
+/* Respeita quem configurou "reduzir animacoes" no sistema. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Lista usada como grade de cartoes: tira marcador e recuo do <ul>. */
+.lista-sem-marcador {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

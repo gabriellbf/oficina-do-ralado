@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contato e localização — Oficina do Ralado</title>
+    <meta
+      name="description"
+      content="Endereço, mapa, horário de funcionamento, formas de pagamento e WhatsApp da Oficina do Ralado, em Santa Amélia, Belo Horizonte."
+    />
+    <meta name="theme-color" content="#1F2A6B" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Oficina do Ralado" />
+    <meta property="og:title" content="Contato e localização — Oficina do Ralado" />
+    <meta property="og:description" content="Onde ficamos, horários, formas de pagamento e WhatsApp." />
+    <meta property="og:locale" content="pt_BR" />
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/estilo.css" />
+  </head>
+
+  <body>
+    <a class="pular-conteudo" href="#conteudo-principal">Pular para o conteúdo</a>
+
+    <header class="cabecalho">
+      <div class="cabecalho__barra">
+        <a class="marca" href="/">
+          <svg class="marca__icone" width="38" height="38" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <circle cx="24" cy="24" r="22" fill="#F5C400" />
+            <circle cx="24" cy="24" r="9" fill="#1F2A6B" />
+            <circle cx="24" cy="24" r="3.4" fill="#F5C400" />
+            <path d="M24 2v8M24 38v8M2 24h8M38 24h8" stroke="#1F2A6B" stroke-width="3.5" stroke-linecap="round" />
+          </svg>
+          <span>
+            <span class="marca__nome" data-empresa="nome">Oficina do Ralado</span>
+            <span class="marca__slogan" data-empresa="slogan">Baterias • Pneus • Serviços • Lâmpadas de farol</span>
+          </span>
+        </a>
+
+        <button class="botao-menu" type="button" data-botao-menu aria-expanded="false" aria-controls="menu-principal">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+          Menu
+        </button>
+      </div>
+
+      <nav class="menu" id="menu-principal" data-menu aria-label="Menu principal">
+        <ul class="menu__lista">
+          <li><a class="menu__link" href="/">Início</a></li>
+          <li><a class="menu__link" href="/servicos.html">Serviços</a></li>
+          <li><a class="menu__link" href="/catalogo.html">Catálogo</a></li>
+          <li><a class="menu__link" href="/contato.html" aria-current="page">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="conteudo-principal">
+      <section class="secao">
+        <div class="conteudo">
+          <h1 class="secao__titulo">Contato e localização</h1>
+          <p class="secao__subtitulo">Estamos na Av. Guarapari, no bairro Santa Amélia.</p>
+
+          <div class="grade">
+            <!-- ---------- Endereço e telefone ---------- -->
+            <div class="cartao">
+              <h2 class="cartao__titulo">Endereço</h2>
+              <address class="cartao__texto" data-empresa="endereco">
+                Av. Guarapari, 546 – Loja 03, Santa Amélia, Belo Horizonte – MG, CEP 31800-500
+              </address>
+
+              <h2 class="cartao__titulo">Telefone e WhatsApp</h2>
+              <p class="cartao__texto">
+                <a href="tel:+5531999825481" data-telefone-link>
+                  <span data-empresa="telefone">(31) 99982-5481</span>
+                </a>
+                — toque para ligar direto do celular.
+              </p>
+
+              <div class="cartao__rodape">
+                <a class="botao botao--whatsapp botao--bloco" href="https://wa.me/5531999825481" data-whatsapp>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                    <path
+                      d="M20.5 3.5A11 11 0 003.2 17.1L2 22l5-1.3A11 11 0 1020.5 3.5zm-8.4 17a9 9 0 01-4.6-1.3l-.3-.2-3 .8.8-2.9-.2-.3a9 9 0 1115.3-6.4 9 9 0 01-8 10.3zm5-6.7c-.3-.1-1.6-.8-1.8-.9s-.4-.1-.6.1-.7.9-.8 1-.3.2-.6 0a7.3 7.3 0 01-2.1-1.3 8 8 0 01-1.5-1.9c-.1-.3 0-.4.1-.6l.4-.5.3-.5v-.5c0-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 005.5 9c0 1.7 1.2 3.3 1.4 3.5a13 13 0 005 4.4c.7.3 1.2.5 1.6.6a3.9 3.9 0 001.8.1 2.9 2.9 0 001.9-1.3 2.4 2.4 0 00.2-1.4c-.1-.1-.3-.2-.5-.3z"
+                    />
+                  </svg>
+                  Chamar no WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <!-- ---------- Horário e pagamentos ---------- -->
+            <div class="cartao">
+              <h2 class="cartao__titulo">Horário de funcionamento</h2>
+              <!-- Preenchido por comum.js a partir de config/empresa.js -->
+              <ul class="lista-info" data-lista-horario>
+                <li><strong>Segunda a sexta</strong><span>8h às 18h</span></li>
+                <li><strong>Sábado</strong><span>8h às 12h</span></li>
+              </ul>
+
+              <h2 class="cartao__titulo">Formas de pagamento</h2>
+              <!-- Preenchido por comum.js a partir de config/empresa.js -->
+              <ul class="etiquetas" data-lista-pagamentos>
+                <li>Dinheiro</li>
+                <li>PIX</li>
+                <li>Cartão de débito</li>
+                <li>Cartão de crédito</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- Mapa ---------- -->
+      <section class="secao secao--cinza">
+        <div class="conteudo">
+          <h2 class="secao__titulo">Como chegar</h2>
+          <p class="secao__subtitulo">Mapa da nossa localização no Google Maps.</p>
+          <iframe
+            class="mapa"
+            title="Mapa com a localização da Oficina do Ralado na Av. Guarapari, 546, Santa Amélia, Belo Horizonte"
+            src="https://www.google.com/maps?q=Av.%20Guarapari%2C%20546%20-%20Santa%20Am%C3%A9lia%2C%20Belo%20Horizonte%20-%20MG%2C%2031800-500&amp;output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </section>
+    </main>
+
+    <footer class="rodape">
+      <div class="conteudo">
+        <div class="rodape__colunas">
+          <div>
+            <h2>Oficina do Ralado</h2>
+            <p data-empresa="slogan">Baterias • Pneus • Serviços • Lâmpadas de farol</p>
+          </div>
+          <div>
+            <h2>Endereço</h2>
+            <p data-empresa="endereco">
+              Av. Guarapari, 546 – Loja 03, Santa Amélia, Belo Horizonte – MG, CEP 31800-500
+            </p>
+          </div>
+          <div>
+            <h2>Contato</h2>
+            <p>
+              WhatsApp e telefone:
+              <a href="tel:+5531999825481" data-telefone-link><span data-empresa="telefone">(31) 99982-5481</span></a>
+            </p>
+          </div>
+        </div>
+        <p class="rodape__creditos">
+          CNPJ <span data-empresa="cnpj">22.072.206/0001-60</span> — Oficina do Ralado.
+          <a href="/admin/login.html">Área do proprietário</a>
+        </p>
+      </div>
+    </footer>
+
+    <a
+      class="whats-flutuante"
+      href="https://wa.me/5531999825481"
+      data-whatsapp
+      aria-label="Falar com a Oficina do Ralado pelo WhatsApp"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+        <path
+          d="M20.5 3.5A11 11 0 003.2 17.1L2 22l5-1.3A11 11 0 1020.5 3.5zm-8.4 17a9 9 0 01-4.6-1.3l-.3-.2-3 .8.8-2.9-.2-.3a9 9 0 1115.3-6.4 9 9 0 01-8 10.3zm5-6.7c-.3-.1-1.6-.8-1.8-.9s-.4-.1-.6.1-.7.9-.8 1-.3.2-.6 0a7.3 7.3 0 01-2.1-1.3 8 8 0 01-1.5-1.9c-.1-.3 0-.4.1-.6l.4-.5.3-.5v-.5c0-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 005.5 9c0 1.7 1.2 3.3 1.4 3.5a13 13 0 005 4.4c.7.3 1.2.5 1.6.6a3.9 3.9 0 001.8.1 2.9 2.9 0 001.9-1.3 2.4 2.4 0 00.2-1.4c-.1-.1-.3-.2-.5-.3z"
+        />
+      </svg>
+      WhatsApp
+    </a>
+
+    <script src="/js/comum.js"></script>
+  </body>
+</html>
