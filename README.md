@@ -13,7 +13,7 @@ site pelo celular, sem depender de ninguém.
 | Empresa | Oficina do Ralado |
 | Ramo | Baterias • Pneus • Serviços • Lâmpadas de farol |
 | Proprietário | Renê Ribeiro Soares |
-| Endereço | Av. Guarapari, 546 – Loja 03, Santa Amélia, Belo Horizonte – MG, CEP 31800-500 |
+| Endereço | Av. Guarapari, 548 – Loja 03, Santa Amélia, Belo Horizonte – MG, CEP 31800-500 |
 | WhatsApp | (31) 99982-5481 |
 | CNPJ | 22.072.206/0001-60 |
 

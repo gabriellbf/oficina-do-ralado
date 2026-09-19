@@ -14,13 +14,13 @@ const empresa = {
   cnpj: '22.072.206/0001-60',
 
   endereco: {
-    logradouro: 'Av. Guarapari, 546 – Loja 03',
+    logradouro: 'Av. Guarapari, 548 – Loja 03',
     bairro: 'Santa Amélia',
     cidade: 'Belo Horizonte',
     estado: 'MG',
     cep: '31800-500',
     // Texto completo usado no rodapé e na página de contato.
-    completo: 'Av. Guarapari, 546 – Loja 03, Santa Amélia, Belo Horizonte – MG, CEP 31800-500'
+    completo: 'Av. Guarapari, 548 – Loja 03, Santa Amélia, Belo Horizonte – MG, CEP 31800-500'
   },
 
   // Telefone/WhatsApp. O numero "limpo" (so digitos, com DDI 55) monta o link wa.me.

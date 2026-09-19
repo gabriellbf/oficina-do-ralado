@@ -126,7 +126,7 @@ Isso é importante principalmente se você usou o celular ou o computador de out
 ### Sobre a sua senha
 
 - **Use uma senha forte**: pelo menos 10 caracteres, misturando letras maiúsculas, minúsculas,
-  números e um símbolo. Exemplo de ideia: `Oficina@Guarapari546`.
+  números e um símbolo. Exemplo de ideia: `Oficina@Guarapari548`.
 - **Não use** datas de aniversário, placa do carro, `123456` ou o nome da oficina sozinho.
 - **Não compartilhe a senha** com ninguém — nem com cliente, nem com fornecedor, nem por WhatsApp.
 - Se você desconfiar que alguém descobriu a senha, peça para trocá-la na hora.
