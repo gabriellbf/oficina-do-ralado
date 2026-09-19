@@ -9,8 +9,6 @@
  * porque na hospedagem gratuita (Render) o disco e apagado a cada deploy.
  */
 
-require('dotenv').config();
-
 const bcrypt = require('bcrypt');
 const { abrirBanco, agora } = require('./db');
 
@@ -139,6 +137,8 @@ function semear(db, opcoes = {}) {
 
 // Permite rodar "npm run seed" direto pelo terminal.
 if (require.main === module) {
+  // Le o .env apenas quando o seed e executado direto pelo terminal.
+  require('dotenv').config({ quiet: true });
   const db = abrirBanco();
   semear(db);
   db.close();
