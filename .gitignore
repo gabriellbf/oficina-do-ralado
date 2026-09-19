@@ -1,0 +1,25 @@
+# Dependencias
+node_modules/
+
+# Variaveis de ambiente (contem senhas - nunca versionar)
+.env
+.env.local
+
+# Banco de dados SQLite gerado localmente
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+
+# Relatorio de cobertura dos testes
+coverage/
+
+# Arquivos temporarios / sistema operacional
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Playwright
+test-results/
+playwright-report/
