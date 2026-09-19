@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Painel — Oficina do Ralado</title>
+    <meta name="description" content="Painel da Oficina do Ralado para alterar preços, produtos e serviços do site." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#1F2A6B" />
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/estilo.css" />
+    <link rel="stylesheet" href="/admin/admin.css" />
+  </head>
+
+  <body>
+    <!-- ================= TOPO ================= -->
+    <header class="painel-topo">
+      <div>
+        <h1 class="painel-topo__titulo">Painel da Oficina do Ralado</h1>
+        <span class="painel-topo__usuario">Conectado como <span id="nome-usuario">...</span></span>
+      </div>
+      <button class="botao botao--contorno botao--pequeno" type="button" id="botao-sair">Sair</button>
+    </header>
+
+    <!-- ================= ABAS ================= -->
+    <div class="abas" role="tablist" aria-label="Escolha o que deseja alterar">
+      <button class="aba" type="button" role="tab" id="aba-produtos" aria-selected="true" aria-controls="painel-produtos">
+        Produtos
+      </button>
+      <button class="aba" type="button" role="tab" id="aba-servicos" aria-selected="false" aria-controls="painel-servicos">
+        Serviços
+      </button>
+    </div>
+
+    <main class="conteudo">
+      <!-- Mensagens de sucesso e erro aparecem aqui -->
+      <p id="recado" class="recado escondido" role="alert"></p>
+
+      <!-- ============================================================= -->
+      <!-- ABA: PRODUTOS                                                  -->
+      <!-- ============================================================= -->
+      <section id="painel-produtos" role="tabpanel" aria-labelledby="aba-produtos">
+        <h2>Produtos do catálogo</h2>
+        <p>Para mudar um preço: digite o valor novo e toque em <strong>Salvar preço</strong>.</p>
+
+        <button class="botao botao--bloco botao--grande" type="button" id="botao-novo-produto">
+          + Cadastrar novo produto
+        </button>
+
+        <!-- Formulário de novo produto / edição completa -->
+        <form class="formulario escondido" id="form-produto" novalidate>
+          <h3 id="titulo-form-produto">Novo produto</h3>
+
+          <div class="campo">
+            <label for="produto-nome">Nome do produto <span class="campo__dica">Ex.: Bateria 60Ah</span></label>
+            <input type="text" id="produto-nome" maxlength="100" required />
+          </div>
+
+          <div class="campo">
+            <label for="produto-categoria">Tipo</label>
+            <select id="produto-categoria">
+              <option value="bateria">Bateria</option>
+              <option value="pneu">Pneu</option>
+              <option value="lampada">Lâmpada</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="produto-preco">Preço em reais <span class="campo__dica">Use vírgula ou ponto. Ex.: 489,90</span></label>
+            <input type="text" inputmode="decimal" id="produto-preco" required />
+          </div>
+
+          <div class="campo">
+            <label for="produto-descricao">
+              Descrição <span class="campo__dica">Opcional. Aparece embaixo do nome no site.</span>
+            </label>
+            <textarea id="produto-descricao" maxlength="500"></textarea>
+          </div>
+
+          <div class="formulario__acoes">
+            <button class="botao botao--azul botao--grande" type="submit">Salvar produto</button>
+            <button class="botao botao--neutro" type="button" data-cancelar="produto">Cancelar</button>
+          </div>
+        </form>
+
+        <!-- Lista de produtos, montada por painel.js -->
+        <div id="lista-produtos" aria-live="polite">
+          <p class="aviso">Carregando...</p>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- ABA: SERVIÇOS                                                  -->
+      <!-- ============================================================= -->
+      <section id="painel-servicos" class="escondido" role="tabpanel" aria-labelledby="aba-servicos">
+        <h2>Serviços da oficina</h2>
+        <p>Deixe o valor <strong>em branco</strong> para o site mostrar “Sob consulta”.</p>
+
+        <button class="botao botao--bloco botao--grande" type="button" id="botao-novo-servico">
+          + Cadastrar novo serviço
+        </button>
+
+        <!-- Formulário de novo serviço / edição completa -->
+        <form class="formulario escondido" id="form-servico" novalidate>
+          <h3 id="titulo-form-servico">Novo serviço</h3>
+
+          <div class="campo">
+            <label for="servico-tipo">Nome do serviço <span class="campo__dica">Ex.: Conserto de pneu furado</span></label>
+            <input type="text" id="servico-tipo" maxlength="100" required />
+          </div>
+
+          <div class="campo">
+            <label for="servico-valor">
+              Valor em reais <span class="campo__dica">Deixe vazio para “Sob consulta”.</span>
+            </label>
+            <input type="text" inputmode="decimal" id="servico-valor" />
+          </div>
+
+          <div class="campo">
+            <label for="servico-descricao">
+              Descrição <span class="campo__dica">Opcional. Explica o que está incluso.</span>
+            </label>
+            <textarea id="servico-descricao" maxlength="500"></textarea>
+          </div>
+
+          <div class="formulario__acoes">
+            <button class="botao botao--azul botao--grande" type="submit">Salvar serviço</button>
+            <button class="botao botao--neutro" type="button" data-cancelar="servico">Cancelar</button>
+          </div>
+        </form>
+
+        <!-- Lista de serviços, montada por painel.js -->
+        <div id="lista-servicos" aria-live="polite">
+          <p class="aviso">Carregando...</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="painel-rodape">
+      <p>
+        Oficina do Ralado — painel do proprietário.
+        <a href="/" target="_blank" rel="noopener">Ver o site</a>
+      </p>
+    </footer>
+
+    <script src="/admin/painel.js"></script>
+  </body>
+</html>

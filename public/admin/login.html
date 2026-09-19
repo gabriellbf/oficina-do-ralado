@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Entrar no painel — Oficina do Ralado</title>
+    <meta name="description" content="Área restrita da Oficina do Ralado para alterar preços, produtos e serviços do site." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#1F2A6B" />
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/estilo.css" />
+    <link rel="stylesheet" href="/admin/admin.css" />
+  </head>
+
+  <body>
+    <main class="tela-login">
+      <div class="caixa-login">
+        <svg width="56" height="56" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <circle cx="24" cy="24" r="22" fill="#F5C400" />
+          <circle cx="24" cy="24" r="9" fill="#1F2A6B" />
+          <circle cx="24" cy="24" r="3.4" fill="#F5C400" />
+          <path d="M24 2v8M24 38v8M2 24h8M38 24h8" stroke="#1F2A6B" stroke-width="3.5" stroke-linecap="round" />
+        </svg>
+
+        <h1>Painel da Oficina do Ralado</h1>
+        <p>Entre com seu usuário e senha para alterar preços e produtos do site.</p>
+
+        <!-- Área onde aparece a mensagem de erro, lida por leitores de tela -->
+        <p id="recado" class="recado escondido" role="alert"></p>
+
+        <form id="form-login" novalidate>
+          <div class="campo">
+            <label for="usuario">Usuário</label>
+            <input type="text" id="usuario" name="usuario" autocomplete="username" required autocapitalize="none" />
+          </div>
+
+          <div class="campo">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" autocomplete="current-password" required />
+          </div>
+
+          <button class="botao botao--azul botao--bloco botao--grande" type="submit" id="botao-entrar">Entrar</button>
+        </form>
+
+        <a class="caixa-login__voltar" href="/">← Voltar para o site</a>
+      </div>
+    </main>
+
+    <script src="/admin/login.js"></script>
+  </body>
+</html>

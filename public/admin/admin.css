@@ -1,0 +1,290 @@
+/* ==========================================================================
+   admin.css — estilos exclusivos do painel do proprietario
+   --------------------------------------------------------------------------
+   O painel foi desenhado para ser usado NO CELULAR, por uma pessoa com pouca
+   experiencia com computador. Por isso: letras grandes, botoes grandes
+   (altura minima de 48px), poucos campos por tela e textos simples.
+   Este arquivo complementa /css/estilo.css.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Cabecalho do painel
+   -------------------------------------------------------------------------- */
+.painel-topo {
+  background: var(--azul);
+  color: var(--branco);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.painel-topo__titulo {
+  color: var(--branco);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.painel-topo__usuario {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--amarelo);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Abas (Produtos / Servicos)
+   -------------------------------------------------------------------------- */
+.abas {
+  display: flex;
+  gap: 8px;
+  background: var(--azul-escuro);
+  padding: 8px 16px;
+  position: sticky;
+  top: 62px;
+  z-index: 19;
+}
+
+.aba {
+  flex: 1;
+  border: none;
+  border-radius: var(--raio);
+  padding: 14px 10px;
+  font-size: 1rem;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--branco);
+  cursor: pointer;
+  min-height: 48px;
+}
+
+.aba[aria-selected="true"] {
+  background: var(--amarelo);
+  color: var(--azul-escuro);
+}
+
+/* --------------------------------------------------------------------------
+   Area de mensagens (sucesso / erro)
+   -------------------------------------------------------------------------- */
+.recado {
+  margin: 16px 0;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   Cartao de item do painel
+   -------------------------------------------------------------------------- */
+.item {
+  background: var(--branco);
+  border: 1px solid var(--cinza-borda);
+  border-left: 6px solid var(--azul);
+  border-radius: var(--raio);
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: var(--sombra);
+}
+
+/* Item escondido do site fica com a lateral cinza e o texto mais apagado. */
+.item--oculto {
+  border-left-color: #9aa0b4;
+  background: #fbfbfd;
+}
+
+.item__cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.item__nome {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--azul);
+}
+
+.item__situacao {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: #e5f3ec;
+  color: #0b5c3c;
+  white-space: nowrap;
+}
+
+.item__situacao--oculto {
+  background: #eceef4;
+  color: #454b5e;
+}
+
+.item__descricao {
+  color: var(--cinza-texto);
+  font-size: 0.92rem;
+  margin: 6px 0 10px;
+}
+
+/* Linha "Preço (R$) [____] [Salvar preço]" — o caminho mais rapido do painel. */
+.linha-preco {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 12px;
+  background: var(--cinza-fundo);
+  border-radius: var(--raio);
+}
+
+.linha-preco__campo {
+  flex: 1 1 130px;
+  min-width: 120px;
+}
+
+.linha-preco label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--azul);
+  margin-bottom: 4px;
+}
+
+.item__acoes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.item__acoes .botao {
+  flex: 1 1 140px;
+}
+
+/* --------------------------------------------------------------------------
+   Formularios (novo item / edicao)
+   -------------------------------------------------------------------------- */
+.formulario {
+  background: var(--branco);
+  border: 2px solid var(--azul);
+  border-radius: var(--raio);
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.campo {
+  margin-bottom: 14px;
+}
+
+.campo label {
+  display: block;
+  font-weight: 700;
+  color: var(--azul);
+  margin-bottom: 5px;
+}
+
+.campo__dica {
+  display: block;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--cinza-texto);
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 13px 12px;
+  font-size: 1.05rem;
+  font-family: inherit;
+  border: 2px solid var(--cinza-borda);
+  border-radius: var(--raio);
+  min-height: 50px;
+  background: var(--branco);
+  color: var(--preto-texto);
+}
+
+.campo textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.formulario__acoes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.formulario__acoes .botao {
+  flex: 1 1 140px;
+}
+
+/* --------------------------------------------------------------------------
+   Tela de login
+   -------------------------------------------------------------------------- */
+.tela-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: var(--azul);
+}
+
+.caixa-login {
+  background: var(--branco);
+  border-radius: 16px;
+  padding: 26px 22px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.caixa-login h1 {
+  font-size: 1.35rem;
+  margin-bottom: 4px;
+}
+
+.caixa-login p {
+  color: var(--cinza-texto);
+  font-size: 0.95rem;
+}
+
+.caixa-login .campo {
+  text-align: left;
+}
+
+.caixa-login__voltar {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 0.92rem;
+}
+
+/* --------------------------------------------------------------------------
+   Rodape simples do painel
+   -------------------------------------------------------------------------- */
+.painel-rodape {
+  text-align: center;
+  color: var(--cinza-texto);
+  font-size: 0.88rem;
+  padding: 24px 16px 40px;
+}
+
+/* Botao neutro (ex.: "Cancelar") — usado sobre fundo branco, onde o
+   amarelo do .botao--contorno nao teria contraste suficiente. */
+.botao--neutro {
+  background: var(--branco);
+  border: 2px solid var(--cinza-borda);
+  color: var(--azul);
+}
+
+.botao--neutro:hover {
+  background: var(--cinza-fundo);
+}
